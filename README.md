@@ -1,7 +1,6 @@
-# cf-intro
 #Introduction to CF
 
-##CF - Session
+##CF - Session @ SUSECON16
 
 Fetch work container
 
