@@ -15,10 +15,12 @@ Login to CF:
     $ cf login -a http://api.cf.cloud.geeko.land -u studentXX --skip-ssl-validation
 
 params (-o susecon -s spaceXX) are optional
+    
+    ### Password is suseconXX
 
     $ cf target -o "susecon" -s "spaceXX"
 
-Basics of the CF CLI: (reference)
+Basics of the CF CLI: (reference - not to be executed next)
 
     $ cf apps
 
@@ -30,6 +32,8 @@ Basics of the CF CLI: (reference)
 
 
 Clone working App - Dora
+
+    $ zypper -n in git
     
     $ git clone https://github.com/abonillasuse/dora.git
 
@@ -38,11 +42,13 @@ Clone working App - Dora
 
 Inspect the `dora_manifest.yml`
 
+    $ cat dora_manifest.yml
+
 Deploy the Dora App
 
     $ cf push doraXX -m 128M
 
-Visit the URL for your App
+Visit the URL for your App by opening the host Firefox
 
 Clone Sinatra App
     
