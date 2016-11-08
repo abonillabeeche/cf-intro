@@ -80,7 +80,7 @@ Visit URL for your App, Notice the DEA INDEX
     $ cf statistics frank-XX
 
 
-Firehose, to Debug apps
+Using Firehose, to Debug apps
 
     $ cf install-plugin "Firehose Plugin" -r CF-Community
 
