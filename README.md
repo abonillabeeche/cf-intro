@@ -59,7 +59,7 @@ Clone Sinatra App (first, exit the dora folder)
 
     $ cd cf-example-sinatra
 
-    $ cf push frank-XX
+    $ cf push frank-XX -m 128M
 
 Add CF Community Rep and install 2 Plugins:
 
