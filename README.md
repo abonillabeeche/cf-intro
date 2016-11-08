@@ -5,9 +5,9 @@
 Fetch work container
 
 
-    $ git pull abonilla/cf-cli
+    $ docker pull abonilla/cf-cli
 
-    $ git run -ti abonilla/cf-cli
+    $ docker run -ti abonilla/cf-cli
 
 
 First Time - CLI:
