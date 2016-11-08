@@ -94,9 +94,9 @@ Diego
 
 Where is my App running?
 
-    $ cf curl /v2/apps/$(cf app dora --guid)/stats
+    $ cf curl /v2/apps/$(cf app doraXX --guid)/stats
 
 
 Is it running on warden or diego?
 
-    $ cf curl /v2/apps/$(cf app dora --guid)| grep diego
+    $ cf curl /v2/apps/$(cf app doraXX --guid)| grep diego
