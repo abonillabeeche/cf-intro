@@ -4,6 +4,7 @@
 
 Fetch work container
 
+    $ rcdocker start
 
     $ docker pull abonilla/cf-cli
 
@@ -85,7 +86,7 @@ Firehose, to Debug apps
 
     $ cf nozzle --debug
 
-Select 5 - visit deployed app.
+Select 5 - re-visit any deployed app URL and return to the console for output.
 
 
 Diego
