@@ -1,7 +1,7 @@
 # cf-intro
-Introduction to CF
+#Introduction to CF
 
-CF - Session
+##CF - Session
 
 Fetch work container
 
@@ -11,12 +11,15 @@ $ git run -ti abonilla/cf-cli
 
 
 First Time - CLI:
+
 $ cf login -a http://api.cf.cloud.geeko.land -u studentXX --skip-ssl-validation
+
 params (-o susecon -s spaceXX) are optional
 
 $ cf target -o "susecon" -s "spaceXX"
 
 Basics of CF CLI:
+
 $ cf apps
 $ cf push (name)(-m 128m)
 $ cf logs %name
