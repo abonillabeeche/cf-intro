@@ -68,7 +68,7 @@ Show App statistics
 
     $ cf install-plugin Statistics -r CF-Community
 
-    $ cf statistics APP_NAME
+    $ cf statistics APP_NAME (reference)
 
 Visit URL for your App, Notice the DEA INDEX
 
