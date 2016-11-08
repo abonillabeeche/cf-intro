@@ -5,79 +5,81 @@
 Fetch work container
 
 
-$ git pull abonilla/cf-cli
+    $ git pull abonilla/cf-cli
 
-$ git run -ti abonilla/cf-cli
+    $ git run -ti abonilla/cf-cli
 
 
 First Time - CLI:
 
-$ cf login -a http://api.cf.cloud.geeko.land -u studentXX --skip-ssl-validation
+    $ cf login -a http://api.cf.cloud.geeko.land -u studentXX --skip-ssl-validation
 
 params (-o susecon -s spaceXX) are optional
 
-$ cf target -o "susecon" -s "spaceXX"
+    $ cf target -o "susecon" -s "spaceXX"
 
 Basics of CF CLI:
 
-$ cf apps
+    $ cf apps
 
-$ cf push (name)(-m 128m)
+    $ cf push (name)(-m 128m)
 
-$ cf logs %name
+    $ cf logs %name
 
-$ cf
+    $ cf
 
 
 
 Clone working App - Dora
-$ git clone https://github.com/abonillasuse/dora.git
+    
+    $ git clone https://github.com/abonillasuse/dora.git
 
-$ cd dora
+    $ cd dora
 
 
-Inspect the dora_manifest.yml
+Inspect the `dora_manifest.yml`
 
 Deploy the Dora App
 
-$ cf push doraXX -m 128M
+    $ cf push doraXX -m 128M
 
 Visit the URL for your App
 
 Clone Sinatra App
-$ git clone https://github.com/abonillasuse/cf-example-sinatra
+    
+    $ git clone https://github.com/abonillasuse/cf-example-sinatra
 
-$ cd cf-example-sinatra
+    $ cd cf-example-sinatra
 
-$ cf push frank-XX
+    $ cf push frank-XX
 
 Visit URL for your App, Notice the DEA INDEX
 
-$ cf statistics frank-XX
+    $ cf statistics frank-XX
 
-$ cf scale frank-XX -i 3
+    $ cf scale frank-XX -i 3
 
-$ cf statistics frank-XX
+    $ cf statistics frank-XX
 
 
 Add CF Community Rep and install 2 Plugins:
 
-$ cf add-plugin-repo CF-Community http://plugins.cloudfoundry.org/
+    $ cf add-plugin-repo CF-Community http://plugins.cloudfoundry.org/
 
 
-- Show App statistics
+Show App statistics
 
-$ cf install-plugin Statistics -r CF-Community
+    $ cf install-plugin Statistics -r CF-Community
 
-$ cf statistics APP_NAME
+    $ cf statistics APP_NAME
 
 
 
-- Firehose, to Debug apps
+Firehose, to Debug apps
 
-$ cf install-plugin "Firehose Plugin" -r CF-Community
+    $ cf install-plugin "Firehose Plugin" -r CF-Community
 
-$ cf nozzle --debug
+    $ cf nozzle --debug
 
 Select 5 - visit deployed app.
 
@@ -87,9 +89,9 @@ Diego
 
 Where is my App running?
 
-$ cf curl /v2/apps/$(cf app dora --guid)/stats
+    $ cf curl /v2/apps/$(cf app dora --guid)/stats
 
 
 Is it running on warden or diego?
 
-$ cf curl /v2/apps/$(cf app dora --guid)| grep diego
+    $ cf curl /v2/apps/$(cf app dora --guid)| grep diego
