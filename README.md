@@ -50,13 +50,25 @@ Deploy the Dora App
 
 Visit the URL for your App by opening the host Firefox
 
-Clone Sinatra App
+Clone Sinatra App (first, exit the dora folder)
+
+    $ cd ..
     
     $ git clone https://github.com/abonillasuse/cf-example-sinatra
 
     $ cd cf-example-sinatra
 
     $ cf push frank-XX
+
+Add CF Community Rep and install 2 Plugins:
+
+    $ cf add-plugin-repo CF-Community http://plugins.cloudfoundry.org/
+
+Show App statistics
+
+    $ cf install-plugin Statistics -r CF-Community
+
+    $ cf statistics APP_NAME
 
 Visit URL for your App, Notice the DEA INDEX
 
@@ -65,19 +77,6 @@ Visit URL for your App, Notice the DEA INDEX
     $ cf scale frank-XX -i 3
 
     $ cf statistics frank-XX
-
-
-Add CF Community Rep and install 2 Plugins:
-
-    $ cf add-plugin-repo CF-Community http://plugins.cloudfoundry.org/
-
-
-Show App statistics
-
-    $ cf install-plugin Statistics -r CF-Community
-
-    $ cf statistics APP_NAME
-
 
 
 Firehose, to Debug apps
