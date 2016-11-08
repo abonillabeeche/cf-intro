@@ -10,7 +10,7 @@ Fetch work container
     $ docker run -ti abonilla/cf-cli
 
 
-First Time - CLI:
+Login to CF:
 
     $ cf login -a http://api.cf.cloud.geeko.land -u studentXX --skip-ssl-validation
 
@@ -18,7 +18,7 @@ params (-o susecon -s spaceXX) are optional
 
     $ cf target -o "susecon" -s "spaceXX"
 
-Basics of CF CLI:
+Basics of the CF CLI: (reference)
 
     $ cf apps
 
@@ -27,7 +27,6 @@ Basics of CF CLI:
     $ cf logs %name
 
     $ cf
-
 
 
 Clone working App - Dora
