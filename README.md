@@ -23,7 +23,7 @@ params (-o susecon -s spaceX) are optional
 
     $ cf target -o "susecon" -s "spaceX"
 
-Basics of the CF CLI: (reference - not to be executed next)
+Basics of the CF CLI: (for reference - not to be executed next)
 
     $ cf apps
 
