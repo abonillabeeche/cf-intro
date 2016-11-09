@@ -89,6 +89,7 @@ Using Firehose, to Debug apps
     $ cf nozzle --debug
 
 Select 5 - re-visit any deployed app URL and return to the console for output.
+An error will be visible of "not-authorized" since the user doesn't have priviledges.
 
 
 Diego
