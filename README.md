@@ -2,6 +2,8 @@
 
 ##CF - Session @ SUSECON16
 
+Replace 'X' with your student number
+
 Fetch work container
 
     $ rcdocker start
@@ -13,13 +15,13 @@ Fetch work container
 
 Login to CF:
 
-    $ cf login -a http://api.cf.cloud.geeko.land -u studentXX --skip-ssl-validation
+    $ cf login -a http://api.cf.cloud.geeko.land -u studentX --skip-ssl-validation
 
-params (-o susecon -s spaceXX) are optional
+params (-o susecon -s spaceX) are optional
     
     ### Password is suseconXX
 
-    $ cf target -o "susecon" -s "spaceXX"
+    $ cf target -o "susecon" -s "spaceX"
 
 Basics of the CF CLI: (reference - not to be executed next)
 
@@ -47,7 +49,7 @@ Inspect the `dora_manifest.yml`
 
 Deploy the Dora App
 
-    $ cf push doraXX -m 128M
+    $ cf push doraX -m 128M
 
 Visit the URL for your App by opening the host Firefox
 
@@ -59,7 +61,7 @@ Clone Sinatra App (first, exit the dora folder)
 
     $ cd cf-example-sinatra
 
-    $ cf push frank-XX -m 128M
+    $ cf push frank-X -m 128M
 
 Add CF Community Rep and install 2 Plugins:
 
@@ -73,11 +75,11 @@ Show App statistics
 
 Visit URL for your App, Notice the DEA INDEX
 
-    $ cf statistics frank-XX
+    $ cf statistics frank-X
 
-    $ cf scale frank-XX -i 3
+    $ cf scale frank-X -i 3
 
-    $ cf statistics frank-XX
+    $ cf statistics frank-X
 
 
 Using Firehose, to Debug apps
@@ -94,9 +96,9 @@ Diego
 
 Where is my App running?
 
-    $ cf curl /v2/apps/$(cf app doraXX --guid)/stats
+    $ cf curl /v2/apps/$(cf app doraX --guid)/stats
 
 
 Is it running on warden or diego?
 
-    $ cf curl /v2/apps/$(cf app doraXX --guid)| grep diego
+    $ cf curl /v2/apps/$(cf app doraX --guid)| grep diego
