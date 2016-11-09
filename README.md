@@ -51,6 +51,10 @@ Deploy the Dora App
 
     $ cf push doraX -m 128M
 
+Notice the URLs section or see the apps deployed with
+
+    $ cf apps
+
 Visit the URL for your App by opening the host Firefox
 
 Clone Sinatra App (first, exit the dora folder)
@@ -73,7 +77,7 @@ Show App statistics
 
     $ cf statistics APP_NAME (reference)
 
-Visit URL for your App, Notice the DEA INDEX
+Visit URL for your App, Notice the DEA INDEX (refresh the page several times)
 
     $ cf statistics frank-X
 
