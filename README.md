@@ -63,7 +63,7 @@ Clone Sinatra App (first, exit the dora folder)
 
     $ cf push frank-X -m 128M
 
-Add CF Community Rep and install 2 Plugins:
+Add CF Community Repo and install 2 Plugins (note - it already exists)
 
     $ cf add-plugin-repo CF-Community http://plugins.cloudfoundry.org/
 
