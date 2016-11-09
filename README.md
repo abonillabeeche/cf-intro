@@ -2,7 +2,7 @@
 
 ##CF - Session @ SUSECON16
 
-Replace 'X' with your student number
+Note: Replace 'X' with your student number
 
 Fetch work container
 
@@ -19,7 +19,7 @@ Login to CF:
 
 params (-o susecon -s spaceX) are optional
     
-    ### Password is suseconXX
+    ### Password is suseconX
 
     $ cf target -o "susecon" -s "spaceX"
 
