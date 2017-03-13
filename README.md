@@ -1,6 +1,6 @@
 #Introduction to CF
 
-##CF - Session @ SUSECON16
+##CF - Session @ SUSECON17
 
 Note: Replace 'X' with your student number
 
