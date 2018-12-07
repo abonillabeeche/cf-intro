@@ -1,0 +1,161 @@
+Kubernetes Cheat Sheet
+Alejandro Bonilla
+Dwain Sims
+
+
+
+1. Get Kubernetes Client Running on Windows (!!)
+On your windows machine do the following:
+Click start and type “power” and look for power shell. Right click it and run as administrator.
+Then run the following:
+Set-ExecutionPolicy AllSigned 
+
+Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+
+Accept all prompts. You have now installed chocolatey (windows package manager)
+You can then run the following to install the k8s cli:
+
+choco install kubernetes-cli
+
+The .kube folder needs to be created in C:\Users\<username>\.kube.
+Put the kubeconfig file in this folder and name it config (as above).
+
+
+2. Log into the CaaSP Master node and get your kubeconfig file.
+
+https://caasp-admin.caasp.geeko.land/kubeconfig
+
+They look something like this one:
+
+[Our master for today is caasp-admin.geeko.land]
+
+apiVersion: v1
+kind: Config
+clusters:
+- name: caasp
+cluster:
+server: https://caasp-master.caasp.geeko.land:6443
+certificate-authority-data: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUdLakNDQkJLZ0F3SUJBZ0lKQUoxd1RpN1lCSVZXTU…….
+users:
+- name: training1@suse.com
+user:
+auth-provider:
+name: oidc
+config:
+client-id: velum
+client-secret: 71f91fae-fd45-447d-a86e-f62087d4b644
+extra-scopes: groups
+id-token: eyJhbGciOiJSUzI1NiIsImtpZCI6IjYzMDM3NDc0Y2EwNzQzNmRiNGFmMGZlYjFjZjY5NWMwODViYWV……….
+idp-issuer-url: https://caasp-master.caasp.geeko.land:32000
+refresh-token: Chl1cjR6b2NrcWF2NzNreXljMjZxaGNlNXdlEhlvanpwb3c0aHNnZ3l0d2dzcWF5d290cDR1
+contexts:
+- name: caasp-training1@suse.com
+context:
+cluster: caasp
+user: training1@suse.com
+current-context: caasp-training1@suse.com
+
+Copy this file to a folder in your home directory….
+
+~/.kube
+
+and name the file “config”. Now when you issue kubectl commands you will not need to authenticate with your Kubernetes cluster. Alternately, and especially if you are talking to multiple clusters, you can save the kubeconfig file with an appropriate name and then issue kubectl commands with the ‘--kubeconfig’ option. For example…
+
+> kubectl --kubeconfig=./configH1 cluster-info
+
+3. A basic status command to issue that insures things are configured properly is cluster-info.
+
+> kubectl --kubeconfig=./configH1 cluster-info
+
+Kubernetes master is running at https://caasp-master.caasp.geeko.land:6443
+Dex is running at https://caasp-master.caasp.geeko.land:6443/api/v1/namespaces/kube-system/services/dex:dex/proxy
+KubeDNS is running at https://caasp-master.caasp.geeko.land:6443/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
+Tiller is running at https://caasp-master.caasp.geeko.land:6443/api/v1/namespaces/kube-system/services/tiller:tiller/proxy
+
+To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
+
+4. Create a Namespace to work in and keep things tidy. Use your assigned training name. Mine is ‘apollo’.
+
+> kubectl create namespace apollo
+namespace "apollo" created
+
+
+> kubectl get namespace apollo
+NAME STATUS AGE
+apollo Active 6m
+
+5. Create a simple webserver running in a Container….
+
+kubectl -n apollo run hello-app --image=nginxdemos/hello --port=80 --replicas=2
+kubectl -n apollo describe deployment hello-app
+kubectl get pods -o wide -n apollo
+kubectl describe replicasets -n apollo
+kubectl describe pods -n apollo
+kubectl expose deployment hello-app - -type="LoadBalancer" -n apollo
+kubectl get svc hello-app -n apollo
+
+6. Display the Kubernetes Dashboard.
+
+run “kubectl proxy” in a terminal session and then go to the following URL in the browser:
+
+http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy
+
+You can click skip and you will then have a read-write view of the k8s dashboard
+
+7. Check the version of kubectl
+> kubectl version
+8. SQL Server Deployment
+Next we’ll deploy Micosoft SQLServer server. We just have to apply the manifest directly in our own namespace: [See note below!]
+kubectl apply -f sqldeployment.yaml -n <namespace>
+
+
+
+
+You can then browse to the deployment in the Kubernetes Dashboard and drill down to the pod level. If you forget the –n then the deployment will go into the default namespace. (Not good!)
+URL for the Dashboard:
+http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy
+You can see there are one deployment, one pod, one replica set, and one service listed.
+If you wish to connect to the cluster you can go to the services tab and obtain the public IP SOC assigns to the MSSQL service. It may take a minute for this IP to appear.
+The best way to access the SQLServer Instance is to use Azure Data Studio.
+https://docs.microsoft.com/en-us/sql/azure-data-studio/download?view=sql-server-2017
+Install this on your demo system. Linux and Windows have been tested.
+Run azuredatastudio
+You use the ip listed on the services page on the Kubernetes Dashboard. (or issue kubectl get svc -n <namespace>)
+When making a connection to SQLServer from Azure Data Studio:
+Connection Type is - Microsoft SQL Server
+Authentication Type is SQL Login
+Specify IP Addreess,80 as the address. "xx.yy.zz.xx,80" with no space.
+The service account is "sa".
+The password for the service account (from the yaml file) is "suse12341!@".
+Once you have connected, run a query. Here is a good one that shows all of the Databases that are active.
+SELECT
+name
+FROM sys.databases
+WHERE state = 0;
+
+
+Another task is getting the version:
+
+
+	SELECT @@version
+
+
+Some good kubectl commands to run against this demo for information purposes:
+
+kubectl describe deployments -n <namespace>
+
+kubectl get svc -n <namespace>
+
+kubectl get nodes -n <namespace>
+
+export KUBECONFIG=/root/kubeconfig
+
+kubectl cluster-info
+kubectl get pods
+kubectl get pods -o wide (-w)
+kubectl get services,svc
+kubectl get rc,rs,
+kubectl get pods --all-namespaces
+kubectl get pvc,svc,pods,rc,rs,deployment,statefulsets --all-namespaces
+
+
