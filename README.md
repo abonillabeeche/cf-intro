@@ -1,6 +1,6 @@
 #Introduction to CF
 
-##CF - Session @ SUSECON17
+##CF - Session @ SUSECon 19
 
 Note: Replace 'X' with your student number
 
@@ -15,7 +15,7 @@ Fetch work container
 
 Login to CF:
 
-    $ cf login -a http://api.cf.cloud.geeko.land -u studentX --skip-ssl-validation
+    $ cf login -a http://api.scf.geeko.land -u studentX --skip-ssl-validation
 
 params (-o susecon -s spaceX) are optional
     
