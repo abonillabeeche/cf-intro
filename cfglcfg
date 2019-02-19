@@ -1,0 +1,45 @@
+#!/bin/bash
+
+QUANT=$2
+c=1
+
+case "$1" in
+  "list") echo "   Available Users"
+    cf orgs
+    cf org-users selab
+    ;;
+  "show") echo "   Showing spaces"
+    cf spaces
+    ;;
+  "useradd")  echo "     Creating user "$2" in selab org and dev/prod space"
+    cf create-user $2 --origin ldap
+    cf set-org-role $2 selab OrgManager
+    cf set-space-role $2 selab prod SpaceDeveloper
+    cf set-space-role $2 selab prod SpaceManager
+    cf set-space-role $2 selab dev SpaceDeveloper
+    cf set-space-role $2 selab dev SpaceManager
+    ;;
+  "create")  echo "     Creating "$2" users in "$org" and target "$target
+    while [ $c -le $QUANT ]; do
+    cf create-space space$c -o susecon
+    cf create-user student$c susecon
+    #cf set-org-role student$i susecon OrgManager
+    cf set-space-role student$c susecon space$c SpaceDeveloper
+    ((c++))
+    done;;
+  "remove") echo "    Removing "$QUANT" accounts"
+    sleep 3
+    while [ $c -le $QUANT ]; do
+    cf delete-user student$c
+    cf delete-space space$c -o susecon
+    ((c++))
+    done;;
+  "help") echo "     Usage: cfglcfg list/useradd/show/create/remove/help [username/quantity]"
+    echo "  cfglcfg list                        List Orgs and Users in selab"
+    echo "  cfglcfg useradd username            Add a User from LDAP"
+    echo "  cfglcfg show                        List all Spaces"
+    echo "  cfglcfg create 15                   Create 15 student Users"
+    echo "  cfglcfg remove 15                   Remove 15 student Users"
+    ;;
+  "") echo "Use 'managecfgl help' for assistance";;
+esac
