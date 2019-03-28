@@ -15,7 +15,7 @@ Fetch work container
 
 Login to CF:
 
-    $ cf login -a http://api.scf.geeko.land -u studentX --skip-ssl-validation
+    $ cf login -a http://api.scf.geeko.land -u trainingX --skip-ssl-validation
 
 params (-o susecon -s spaceX) are optional
     
@@ -42,14 +42,34 @@ Clone working App - Dora
 
     $ cd dora
 
+Push the `dora` Application
 
-Inspect the `dora_manifest.yml`
+    $ cf push dora -b ruby_buildpack -s sle12 -k 128m -m 36m --random-route
+    
+    *This Fails*
+    
+    $ cf logs dora --recent
+    
+    * Notice the ERR - redeploy with:  
+    
+    $ cf push dora -b ruby_buildpack -s sle12 -k 512m -m 36m --random-route
+    
+Create the `manifest.yml` as we don't want to constantly add these parameters in the App
 
-    $ cat dora_manifest.yml
+    $ vi manifest.yml
+```    
+- name: dora
+  instances: 1
+  memory: 36M
+  disk_quota: 512M
+  random-route: true
+  buildpack: ruby_buildpack
+  stack: sle12
+```
 
-Deploy the Dora App
+Re-Deploy the `Dora` App
 
-    $ cf push doraX -m 128M
+    $ cf push
 
 Notice the URLs section or see the apps deployed with
 
