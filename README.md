@@ -46,11 +46,11 @@ Push the `dora` Application
 
     $ cf push dora -b ruby_buildpack -s sle12 -k 128m -m 36m --random-route
     
-    *This Fails*
+*This Fails*
     
     $ cf logs dora --recent
     
-    * Notice the ERR - redeploy with:  
+*Notice the ERR* - redeploy with:  
     
     $ cf push dora -b ruby_buildpack -s sle12 -k 512m -m 36m --random-route
     
