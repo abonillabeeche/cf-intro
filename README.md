@@ -12,6 +12,10 @@ Fetch work container (ONLY necessary if using your own system)
 
     $ docker run -ti abonilla/cf-cli
 
+Login to the client System
+
+    $ ssh trainingX@demo.geeko.land
+    ### Ask for Password
 
 Login to SUSE Cloud Application Platform with the cf CLI:
 
@@ -19,8 +23,6 @@ Login to SUSE Cloud Application Platform with the cf CLI:
 
 params (-o susecon -s spaceX) are optional
     
-    ### Ask for Password
-
     $ cf target -o "susecon" -s "spaceX"
 
 
