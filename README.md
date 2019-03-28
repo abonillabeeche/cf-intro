@@ -151,6 +151,7 @@ Deploying Pre-Build (docker) Apps
 ```
 applications:
   - name: dockerapp
+    random-route: true
     memory: 128M
     instances: 1
     docker:
@@ -159,9 +160,9 @@ applications:
  ```     
     $ cf push 
 
-    $ cf app docker app
+    $ cf app dockerapp
     
-    
+    $ curl dockerapp-random-name.scf.geeko.land
 
 
 Deploying Pre-Build (docker) Apps
@@ -180,7 +181,7 @@ import (
         "os"
         )
 func main () {
-        http.handleFunc("/", func(w http.ResponseWriter, r*http.Request){
+        http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request){
                 fmt.Fprintf(w, "Hello, you've requested: %s\n", r.URL.Path)
                 })
                 http.ListenAndServe(":"+os.Getenv("PORT"), nil)
@@ -190,6 +191,7 @@ func main () {
     $ vi manifest.yml
 applications:
   - name: goapp
+    random-route: true
     memory: 64M
     instances: 1
     buildpack: go_buildpack
@@ -200,7 +202,7 @@ applications:
     
     $ cf apps
 
-
+    $ curl goapp-random-name.scf.geeko.land
 
 Using Firehose, to Debug apps
 
