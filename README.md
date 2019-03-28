@@ -35,8 +35,6 @@ Basics of the CF CLI: (for reference - not to be executed next)
 
 
 Clone working App - Dora
-
-    $ zypper -n in git
     
     $ git clone https://github.com/abonillasuse/dora.git
 
@@ -64,14 +62,16 @@ Handling currently running applications
     $ cf apps
     $ cf app dora
     $ cf ssh dora (close with `exit`)
+    $ cf logs dora --recent
 
-Running multiple instances on different Container Cells is recommended for HA
+Delete `dora`
 
-    $ cf scale dora -i 2
+    $ cf delete dora
 
 Create the `manifest.yml` as we don't want to constantly add these parameters in the App
 
     $ vi manifest.yml
+    
 ```    
 applications:
 - name: dora
@@ -86,6 +86,21 @@ applications:
 Re-Deploy the `Dora` App
 
     $ cf push
+    
+Running multiple instances on different Container Cells is recommended for HA
+
+    $ cf scale dora -i 2
+
+Fetch the `ID` of the Container instance being hit by the request - use a browser or curl, ie
+
+    $ curl dora-interested-wombat.scf.geeko.land/id
+    $ curl dora-interested-wombat.scf.geeko.land/id
+    $ curl dora-interested-wombat.scf.geeko.land/id
+
+Delete the `dora` App deployment
+
+    $ cf delete dora
+    $ cf apps
 
 Notice the URLs section or see the apps deployed with
 
