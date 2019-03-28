@@ -4,9 +4,9 @@
 
 Note: Replace 'X' with your student number
 
-Fetch work container
+Fetch work container (ONLY necessary if using your own system)
 
-    $ rcdocker start
+    $ systemctl start docker
 
     $ docker pull abonilla/cf-cli
 
@@ -19,7 +19,7 @@ Login to SUSE Cloud Application Platform with the cf CLI:
 
 params (-o susecon -s spaceX) are optional
     
-    ### Password is suseconX
+    ### Ask for Password
 
     $ cf target -o "susecon" -s "spaceX"
 
@@ -91,22 +91,26 @@ Delete the `dora` App deployment
 
     $ cf delete dora
     $ cf apps
+    $ cd ~
 
-Notice the URLs section or see the apps deployed with
+Clone the `Sinatra` App `-X `is your Student Number! 
 
-    $ cf apps
-
-Visit the URL for your App by opening the host Firefox
-
-Clone Sinatra App (first, exit the dora folder)
-
-    $ cd ..
+    $ cd ~
     
     $ git clone https://github.com/abonillasuse/cf-example-sinatra
 
     $ cd cf-example-sinatra
 
-    $ cf push frank-X -m 128M
+    $ cf push frank-X -m 128M -k 512M
+
+Open a browser and visit the URL for the `frank` App
+
+Remove the SUSECON image from the source code and re-deploy the App
+
+    $ cf-example-sinatra> vi views/index.erb
+    # Delete Line 23
+    $ cf push frank-X -m 128M -k 512M
+
 
 Add CF Community Repo and install 2 Plugins (note - it already exists)
 
