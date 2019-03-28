@@ -140,6 +140,68 @@ Additionally, the App does not require 64M of RAM, let's decrease the sizing
     $ cf statistics frank-X
 
 
+
+Deploying Pre-Build (docker) Apps
+
+    $ cd ~
+    
+    $ mkdir dockerapp ; cd dockerapp
+    
+    $ vi manifest.yml
+```
+applications:
+  - name: dockerapp
+    memory: 128M
+    instances: 1
+    docker:
+      image: gruntwork/docker-test-webapp
+      health-check-type: http
+ ```     
+    $ cf push 
+
+    $ cf app docker app
+    
+    
+
+
+Deploying Pre-Build (docker) Apps
+
+    $ cd ~
+    
+    $ mkdir goapp ; cd goapp
+    
+    $ vi hello.go
+
+package main
+
+import (
+        "fmt"
+        "net/http"
+        "os"
+        )
+func main () {
+        http.handleFunc("/", func(w http.ResponseWriter, r*http.Request){
+                fmt.Fprintf(w, "Hello, you've requested: %s\n", r.URL.Path)
+                })
+                http.ListenAndServe(":"+os.Getenv("PORT"), nil)
+                }
+             
+ 
+    $ vi manifest.yml
+applications:
+  - name: goapp
+    memory: 64M
+    instances: 1
+    buildpack: go_buildpack
+    env:
+      GOPACKAGE: main
+      
+    $ cf push
+    
+    $ cf apps
+
+
+
 Using Firehose, to Debug apps
 
     $ cf install-plugin "Firehose Plugin" -r CF-Community
