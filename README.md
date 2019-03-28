@@ -46,7 +46,7 @@ Push the `dora` Application
 
     $ cf push dora -b ruby_buildpack -s sle12 -k 128m -m 36m --random-route
     
-*This Fails*
+*This Fails* - find out why
     
     $ cf logs dora --recent
     
@@ -54,10 +54,26 @@ Push the `dora` Application
     
     $ cf push dora -b ruby_buildpack -s sle12 -k 512m -m 36m --random-route
     
+The Application has been deployed - notice the `routes` section at the bottom of the output
+access the application with a browser or with curl, ie:
+
+    $ curl dora-surprised-possum.scf.geeko.land
+
+Handling currently running applications
+
+    $ cf apps
+    $ cf app dora
+    $ cf ssh dora (close with `exit`)
+
+Running multiple instances on different Container Cells is recommended for HA
+
+    $ cf scale dora -i 2
+
 Create the `manifest.yml` as we don't want to constantly add these parameters in the App
 
     $ vi manifest.yml
 ```    
+applications:
 - name: dora
   instances: 1
   memory: 36M
