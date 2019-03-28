@@ -24,7 +24,7 @@ Login to SUSE Cloud Application Platform with the cf CLI:
     $ cf target -o "susecon" -s "spaceX"
 
 
-Clone working App - Dora
+Clone the `Dora` App
     
     $ git clone https://github.com/abonillasuse/dora.git
 
