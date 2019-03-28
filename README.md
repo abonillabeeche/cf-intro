@@ -13,7 +13,7 @@ Fetch work container
     $ docker run -ti abonilla/cf-cli
 
 
-Login to CF:
+Login to SUSE Cloud Application Platform with the cf CLI:
 
     $ cf login -a http://api.scf.geeko.land -u trainingX --skip-ssl-validation
 
@@ -22,16 +22,6 @@ params (-o susecon -s spaceX) are optional
     ### Password is suseconX
 
     $ cf target -o "susecon" -s "spaceX"
-
-Basics of the CF CLI: (for reference - not to be executed next)
-
-    $ cf apps
-
-    $ cf push (name)(-m 128m)
-
-    $ cf logs %name
-
-    $ cf
 
 
 Clone working App - Dora
