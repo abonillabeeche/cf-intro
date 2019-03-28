@@ -101,33 +101,42 @@ Clone the `Sinatra` App `-X `is your Student Number!
 
     $ cd cf-example-sinatra
 
-    $ cf push frank-X -m 128M -k 512M
+    $ cf push frank-X -m 64M -k 512M
 
 Open a browser and visit the URL for the `frank` App
+
+Visit the URL for the `frank` App, then scale-out the App
+
+    $ cf scale frank-X -i 2
+    
+Back on the browser, notice the `Container` value (refresh the page several times)
+
+
+Profile App basic resource usage
+
+Add CF Community Repo to install Plug-Ins (note - it already exists)
+
+    $ cf add-plugin-repo CF-Community http://plugins.cloudfoundry.org/
+
+Show App statistics - Installing the plugin
+
+    $ cf install-plugin Statistics -r CF-Community
+
+    $ cf statistics frank-X (exit with q)
+
+    $ cf statistics frank-X
 
 Remove the SUSECON image from the source code and re-deploy the App
 
     $ cf-example-sinatra> vi views/index.erb
     # Delete Line 23
-    $ cf push frank-X -m 128M -k 512M
+    
+    $ cf push frank-X -m 64M -k 512M
+    
+Additionally, the App does not require 64M of RAM, let's decrease the sizing
 
-
-Add CF Community Repo and install 2 Plugins (note - it already exists)
-
-    $ cf add-plugin-repo CF-Community http://plugins.cloudfoundry.org/
-
-Show App statistics
-
-    $ cf install-plugin Statistics -r CF-Community
-
-    $ cf statistics APP_NAME (reference)
-
-Visit URL for your App, Notice the DEA INDEX (refresh the page several times)
-
-    $ cf statistics frank-X
-
-    $ cf scale frank-X -i 3
-
+    $ cf scale frank-x -m 32M
+    
     $ cf statistics frank-X
 
 
