@@ -20,8 +20,6 @@ Login to the client System
 Login to SUSE Cloud Application Platform with the cf CLI:
 
     $ cf login -a http://api.scf.geeko.land -u trainingX --skip-ssl-validation
-
-params (-o susecon -s spaceX) are optional
     
     $ cf target -o "susecon" -s "spaceX"
 
