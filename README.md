@@ -171,7 +171,7 @@ Deploying Pre-Build (docker) Apps
     $ mkdir goapp ; cd goapp
     
     $ vi hello.go
-
+```
 package main
 
 import (
@@ -185,7 +185,7 @@ func main () {
                 })
                 http.ListenAndServe(":"+os.Getenv("PORT"), nil)
                 }
-             
+  ```           
  
     $ vi manifest.yml
 applications:
