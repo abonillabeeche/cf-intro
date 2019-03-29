@@ -163,9 +163,11 @@ applications:
     $ cf app dockerapp
     
     $ curl dockerapp-random-name.scf.geeko.land
+    
+    $ cf delete dockerapp
 
 
-Deploying Pre-Build (docker) Apps
+Writing an App in Go
 
     $ cd ~
     
@@ -189,7 +191,7 @@ func main () {
   ```           
  
     $ vi manifest.yml
-applications:
+```applications:
   - name: goapp
     random-route: true
     memory: 64M
@@ -197,12 +199,38 @@ applications:
     buildpack: go_buildpack
     env:
       GOPACKAGE: main
-      
+```
     $ cf push
     
     $ cf apps
 
-    $ curl goapp-random-name.scf.geeko.land
+    $ curl goapp-random-name.scf.geeko.land/more-suse
+
+    $ cf delete goapp
+    
+    
+    
+Let's deploy an App from the WebUI
+
+    # open https://stratos.scf.geeko.land:8443/login
+    
+    # At the Top Right - Click the Arrow to deploy an App
+    
+    # Leave Cloud Foundry / trainingX / spaceX and click Next
+    
+    # Select Public Github / under Project type: abonillasuse/cf-example-sinatra / Branch: master / Click Next
+    
+    # Choose the first Commit / Click Next
+    
+    # Name: frankX / Disk Quota: 512 / Mem Quota: 32 / Select `Create a random route` / Click Deploy
+
+
+
+
+
+
+
+
 
 Using Firehose, to Debug apps
 
