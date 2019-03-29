@@ -21,7 +21,7 @@ Login to SUSE Cloud Application Platform with the cf CLI:
 
     $ cf login -a http://api.scf.geeko.land -u trainingX --skip-ssl-validation
     
-    $ cf target -o "susecon" -s "spaceX"
+    $ cf target -o "susecon" -s "spaceX" (this step is optional)
 
 
 Clone the `Dora` App
