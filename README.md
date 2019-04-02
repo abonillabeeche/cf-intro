@@ -227,11 +227,15 @@ Let's deploy an App from the WebUI
     
     # Leave Cloud Foundry / trainingX / spaceX and click Next
     
-    # Select Public Github / under Project type: abonillasuse/cf-example-sinatra / Branch: master / Click Next
+    # Select Public Github / under Project type: abonillasuse/cf-example-sinatra / Branch: stratos / Click Next
     
     # Choose the first Commit / Click Next
     
     # Name: frankX / Disk Quota: 512 / Mem Quota: 32 / Select `Create a random route` / Click Deploy
+    
+    # Follow the output as the application builds and deploys - Click "Go To App Summary"
+    
+    # Look around the provided information in the UI - visit the App by clicking the square/arrow button on the top Right Corner "Visit"
 
 
 
