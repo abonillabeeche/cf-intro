@@ -1,6 +1,6 @@
-#Introduction to CF
+#Introduction to CF - SUSE Cloud Application Platform
 
-##CF - Session @ SUSECon 19
+## Session @ SUSECon 19
 
 Note: Replace 'X' with your student number
 
