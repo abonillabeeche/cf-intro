@@ -1,16 +1,19 @@
-#Introduction to CF - SUSE Cloud Application Platform
+## Introduction to CF - SUSE Cloud Application Platform
 
 ## Session @ SUSECon 19
 
-Note: Replace 'X' with your student number
 
-Fetch work container (ONLY necessary if using your own system)
+-> Note: Replace 'X' with your student number <-
+
+
+Fetch work container (*ONLY* necessary if using your own system)
 
     $ systemctl start docker
 
     $ docker pull abonilla/cf-cli
 
     $ docker run -ti abonilla/cf-cli
+
 
 Login to the client System
 
