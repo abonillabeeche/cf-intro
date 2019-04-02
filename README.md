@@ -61,7 +61,7 @@ Delete `dora`
 
     $ cf delete dora
 
-Create the `manifest.yml` as we don't want to constantly add these parameters in the App
+Create the `manifest.yml` as we don't want to constantly add the deployment parameters in the App
 
     $ vi manifest.yml
     
@@ -115,7 +115,7 @@ Visit the URL for the `frank` App, then scale-out the App
 Back on the browser, notice the `Container` value (refresh the page several times)
 
 
-Profile App basic resource usage
+Resource usage App Profiling
 
 Add CF Community Repo to install Plug-Ins (note - it already exists)
 
@@ -127,6 +127,7 @@ Show App statistics - Installing the plugin
 
     $ cf statistics frank-X (exit with q)
 
+    # Notice the resource consumption
 
 Remove the SUSECON image from the source code and re-deploy the App
 
@@ -135,7 +136,7 @@ Remove the SUSECON image from the source code and re-deploy the App
     
     $ cf push frank-X -m 64M -k 512M
     
-Additionally, the App does not require 64M of RAM, let's decrease the sizing
+Additionally, as noticed - the App does not require 64M of RAM, let's decrease the sizing
 
     $ cf scale frank-x -m 32M
     
