@@ -124,7 +124,6 @@ Show App statistics - Installing the plugin
 
     $ cf statistics frank-X (exit with q)
 
-    $ cf statistics frank-X
 
 Remove the SUSECON image from the source code and re-deploy the App
 
@@ -191,7 +190,8 @@ func main () {
   ```           
  
     $ vi manifest.yml
-```applications:
+```
+applications:
   - name: goapp
     random-route: true
     memory: 64M
@@ -201,6 +201,15 @@ func main () {
       GOPACKAGE: main
 ```
     $ cf push
+    
+    # Identify why the app deployment failed
+    
+    
+    
+    
+    
+    
+    # Change the env variable to GOPACKAGENAME and cf push the App again
     
     $ cf apps
 
@@ -226,30 +235,3 @@ Let's deploy an App from the WebUI
 
 
 
-
-
-
-
-
-
-Using Firehose, to Debug apps
-
-    $ cf install-plugin "Firehose Plugin" -r CF-Community
-
-    $ cf nozzle --debug
-
-Select 5 - re-visit any deployed app URL and return to the console for output.
-An error will be visible of "not-authorized" since the user doesn't have priviledges.
-
-
-Diego
-
-
-Where is my App running?
-
-    $ cf curl /v2/apps/$(cf app doraX --guid)/stats
-
-
-Is it running on warden or diego?
-
-    $ cf curl /v2/apps/$(cf app doraX --guid)| grep diego
