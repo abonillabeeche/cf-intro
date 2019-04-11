@@ -15,7 +15,7 @@ Fetch work container (*ONLY* necessary if using your own system)
     $ docker run -ti abonilla/cf-cli
 
 
-Login to the client System
+Login to the client System (*ONLY* necessary if not using own system)
 
     $ ssh trainingX@demo.geeko.land
     ### Ask for Password
@@ -57,11 +57,11 @@ Handling currently running applications
     $ cf ssh dora (close with `exit`)
     $ cf logs dora --recent
 
-Delete `dora`
+Delete the previously deployed App`dora`
 
     $ cf delete dora
 
-Create the `manifest.yml` as we don't want to constantly add the deployment parameters in the App
+Create a `manifest.yml` as we don't want to constantly add the deployment parameters in the App
 
     $ vi manifest.yml
     
@@ -96,7 +96,7 @@ Delete the `dora` App deployment
     $ cf apps
     $ cd ~
 
-Clone the `Sinatra` App `-X `is your Student Number! 
+Clone the `Sinatra` App, remember `-X `is your Student Number! 
 
     $ cd ~
     
@@ -129,7 +129,7 @@ Show App statistics - Installing the plugin
 
     # Notice the resource consumption
 
-Remove the SUSECON image from the source code and re-deploy the App
+Remove the SUSECON image from the source code in your `frank-X` App and re-deploy it
 
     $ cf-example-sinatra> vi views/index.erb
     # Delete Line 23
@@ -144,7 +144,7 @@ Additionally, as noticed - the App does not require 64M of RAM, let's decrease t
 
 
 
-Deploying Pre-Build (docker) Apps
+Deploying Pre-Built (docker) Apps
 
     $ cd ~
     
@@ -161,6 +161,7 @@ applications:
       image: gruntwork/docker-test-webapp
       health-check-type: http
  ```     
+ 
     $ cf push 
 
     $ cf app dockerapp
